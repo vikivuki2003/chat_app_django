@@ -28,6 +28,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_cleanup.apps.CleanupConfig',
     'django_htmx',
+    'channels',
 
     'home',
     'users',
@@ -79,7 +81,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'chat_site_django.wsgi.application'
+#'WSGI_APPLICATION = 'chat_site_django.wsgi.application'
+ASGI_APPLICATION = 'chat_site_django.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BAKEND': 'channels.layers.InMemoryChannelLayer',
+    }
+}
 
 
 # Database
